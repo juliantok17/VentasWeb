@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <meta charset="utf-8">
+        <title>Nuevo Aviso CFP N° 27</title>
+        <link rel="stylesheet" href="../css/style.css">
+        <!--<link rel="stylesheet" href="css/vista_avisos.css">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    </head>
+
+    <body onload="AVISO.listarAvisos();">
+
+        <header>
+
+        </header>
+        <nav>
+            <ul>
+                <li><a href="/VentasPruebas/index.html">HOME</a></li>
+                <li><a href="#">EMPRESA</a></li>
+                <li><a href="#">PRODUCTOS</a></li>
+                <li><a href="#">CATEGORIAS</a></li>
+                <li><a href="#">CONTACTO</a></li>
+                <li><a href="#">EDITAR</a></li>            
+            </ul>
+        </nav>
+
+        <section> 
+            <article id="art1">
+                <form class="contact_form">
+                    <ul>
+
+                        <li>
+                            <label for="titulo">Título:</label>
+                            <input type="text"  id="titulo" placeholder="Titulo del Aviso" required />
+                        </li>
+                        <li>
+                            <label for="descripcion">Descripción:</label>
+                            <textarea  id="descripcion" cols="40" rows="6" required ></textarea>
+                        </li>
+                        <li>
+                            <label for="precio">Precio:</label>
+                            <input type="text"  id="precio" placeholder="" required />
+                        </li>
+
+                        <li>
+                            <button class="submit" id="botonenviar" onclick="AVISO.insertar();">Enviar</button>
+                            
+                        </li>
+                    </ul>
+                    
+                </form>
+                    <!--<input type="button" id="botonenviar" onclick="AVISO.insertar();" value="Grabar" />-->
+                <div id="lista">
+                </div>
+                
+                <script type='template' id='templateVistaProductos'>
+                    <table class="tablalista">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Precio</th>
+                            <th>Eliminar</th>
+                            <th>Actualizar</th>
+                        </tr>
+                        {{#productos}}
+                        <tr>
+                            <td><input type='text' id='nomAviso_{{idAvisos}}' value='{{nombreAvisos}}' /> </td>
+                            <td><input type='text' id='desAviso_{{idAvisos}}' value='{{descripcionAvisos}}' /> </td>
+                            <td><input type='number' id='preAviso_{{idAvisos}}' value='{{precioAvisos}}' /> </td>
+                            <td><button onclick="AVISO.eliminar({{idAvisos}});">Borrar</button> </td>
+                            <td><button value='' onclick="AVISO.actualizar({{idAvisos}});" >Modificar</button> </td>
+                        </tr>
+                        {{/productos}}
+                    </table>
+                </script>
+            </article>
+            <article id="art2">
+                
+            </article>
+        </section>
+
+
+
+        <footer>
+
+        </footer>
+
+        <script src="../js/mustache.js" type="text/javascript"></script>
+        <script src="../js/avisos.js" type="text/javascript"></script>
+        
+        
+    </body>
+</html>
