@@ -37,26 +37,31 @@ AVISO.insertar = function () {
     // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
+            
             AVISO.listarAvisos();
             //alert(xhr.responseText);
-
+            //alert("4");
         }
     };
-    // objeto para enviar los parametros del formulario
-    var valTitulo = document.querySelector("#titulo").required;
-    var valDescripcion = document.querySelector("#descripcion").required;
-    var valPrecio = document.querySelector("#precio").required;
     
-    if (valTitulo == true && valDescripcion == true && valPrecio == true){
+
+    
+    var valTitulo = document.querySelector("#titulo").value;
+    var valDescripcion = document.querySelector("#descripcion").value;
+    var valPrecio = document.querySelector("#precio").value;
+    
+    if ((valTitulo != "") && (valDescripcion != "") && (valPrecio != "")) {
+        // objeto para enviar los parametros del formulario
         var aviso = {};
         aviso.nombreAvisos = document.querySelector("#titulo").value;
         aviso.descripcionAvisos = document.querySelector("#descripcion").value;
         aviso.precioAvisos = document.querySelector("#precio").value;
         // formato del mensaje en JSON
         var avisoStringJSON = JSON.stringify(aviso);
-
+        
         xhr.send(avisoStringJSON);
-    } else{
+        
+    } else {
         xhr.send(null);
     }
 };

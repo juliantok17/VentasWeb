@@ -136,13 +136,15 @@ footer{
     height:20px; 
     width:250px; 
     padding:5px 8px;
+    margin-left:10px;
 }
 .contact_form textarea {
     padding:8px; 
     width:300px;
+    margin-left:10px;
 }
 .contact_form #botonenviar {
-    margin-left:90px;
+    margin-left:105px;
 }
 
 /*----- estilos visuales de los elementos --------*/
@@ -153,7 +155,7 @@ footer{
     border-radius:2px;
     color: #888;
     font-size: 12px;
-    padding-right:30px;
+    /*padding-right:30px;*/
     -moz-transition: padding .25s; 
     -webkit-transition: padding .25s; 
     -o-transition: padding .25s;
@@ -164,7 +166,7 @@ footer{
     background: #fff; 
     border:1px solid #555; 
     box-shadow: 0 0 3px #aaa; 
-    padding-right:80px;
+    /*padding-right:80px;*/
 }
 
 /* === Estilos de Validacion === */ 
