@@ -17,7 +17,7 @@ public class Conexion {
     private static String DB = "ventas";
     private static String URL = "jdbc:mysql://localhost/" + DB;
     private static String USUARIO = "root";
-    private static String PASSWORD = "mint";
+    private static String PASSWORD = "";
 
     Connection con = null;
     

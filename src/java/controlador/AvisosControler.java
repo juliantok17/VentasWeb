@@ -73,14 +73,14 @@ public class AvisosControler extends HttpServlet {
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        log("CONTROL UPDATE 1");
+        
         try {
-            log("CONTROL UPDATE 2");
+            
             Gson convertir = new Gson();
             AvisosVO avisoParametro = convertir.fromJson(request.getReader(), AvisosVO.class);
             AvisosDAO.modificarAviso(avisoParametro);
             out.println(convertir.toJson("OK"));
-            log("CONTROL UPDATE 3");
+            
         } catch (ClassNotFoundException ex) {
             out.println("" + ex.getMessage());
         } catch (SQLException ex) {
@@ -97,17 +97,13 @@ public class AvisosControler extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        log("CONTROL DELETE 1");
-        response.setContentType("text/html;charset=UTF-8");
-        log("CONTROL DELETE 2");
+        
+        response.setContentType("text/html;charset=UTF-8");        
         PrintWriter out = response.getWriter();  
-        log("CONTROL DELETE 3");
-        try {   
-            log("CONTROL DELETE 4");
-            Gson convertir = new Gson();
-            log("CONTROL DELETE 5");
-            AvisosVO avisoParametro = convertir.fromJson(request.getReader(), AvisosVO.class);
-            log("CONTROL DELETE 6");            
+        
+        try {           
+            Gson convertir = new Gson();            
+            AvisosVO avisoParametro = convertir.fromJson(request.getReader(), AvisosVO.class);                     
             AvisosDAO.bajaAviso(avisoParametro);
             out.println(convertir.toJson("Aviso eliminado correctamente"));
 

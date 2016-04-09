@@ -15,7 +15,7 @@
         </header>
         <nav>
             <ul>
-                <li><a href="/VentasPruebas/index.html">HOME</a></li>
+                <li><a href="/VentasWeb/index.html">HOME</a></li>
                 <li><a href="#">EMPRESA</a></li>
                 <li><a href="#">PRODUCTOS</a></li>
                 <li><a href="#">CATEGORIAS</a></li>
@@ -26,30 +26,30 @@
 
         <section> 
             <article id="art1">
-                <form class="contact_form">
+                <form name="formulario" id="formulario" class="contact_form" onsubmit="return false;">
                     <ul>
 
                         <li>
                             <label for="titulo">Título:</label>
-                            <input type="text"  id="titulo" placeholder="Titulo del Aviso" required />
+                            <input class="text-input" type="text"  id="titulo" name="titulo" placeholder="Titulo del Aviso" required />
                         </li>
                         <li>
                             <label for="descripcion">Descripción:</label>
-                            <textarea  id="descripcion" cols="40" rows="6" required ></textarea>
+                            <textarea  id="descripcion" cols="40" rows="6" name="descripcion" required ></textarea>
                         </li>
                         <li>
                             <label for="precio">Precio:</label>
-                            <input type="text"  id="precio" placeholder="" required />
+                            <input class ="text-input" type="number"  id="precio" placeholder="111,11" name="precio" required />
                         </li>
 
                         <li>
                             <!--<button class="submit" id="botonenviar" onclick="AVISO.insertar();">Enviar</button>-->
-                            
+                            <input type="submit" id="botonenviar" class="submit" onclick="AVISO.insertar();" value="Grabar" />
                         </li>
                     </ul>
                     
                 </form>
-                    <input type="button" id="botonenviar" onclick="AVISO.insertar();" value="Grabar" />
+                    
                 <div id="lista">
                 </div>
                 

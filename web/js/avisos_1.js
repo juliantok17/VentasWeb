@@ -33,60 +33,51 @@ AVISO.insertar = function () {
     var xhr = new XMLHttpRequest();
     // Metodo INSERTAR, Accion PersonaServer
     xhr.open("POST", "../AvisosControler");
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
     // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             AVISO.listarAvisos();
             //alert(xhr.responseText);
-
-        }
-    };
-    // objeto para enviar los parametros del formulario
-    var valTitulo = document.querySelector("#titulo").required;
-    var valDescripcion = document.querySelector("#descripcion").required;
-    var valPrecio = document.querySelector("#precio").required;
-    
-    if (valTitulo == true && valDescripcion == true && valPrecio == true){
-        var aviso = {};
-        aviso.nombreAvisos = document.querySelector("#titulo").value;
-        aviso.descripcionAvisos = document.querySelector("#descripcion").value;
-        aviso.precioAvisos = document.querySelector("#precio").value;
-        // formato del mensaje en JSON
-        var avisoStringJSON = JSON.stringify(aviso);
-
-        xhr.send(avisoStringJSON);
-    } else{
-        xhr.send(null);
-    }
-};
-
-
-// Creacion de un Metodo actualizar() en el Objeto PERSONA
-AVISO.actualizar = function (id) {
-    // Instanciar el Objeto AJAX que existe en todos los Navegadores Web    
-    var xhr = new XMLHttpRequest();
-    // Metodo ACTUALIZAR, Accion PersonaServer
-    xhr.open("PUT", "../AvisosControler");
-    // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.    
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            //alert(xhr.responseText);
-            AVISO.listarAvisos();
+            
         }
     };
     // objeto para enviar los parametros del formulario
     var aviso = {};
-
-    aviso.idAvisos = id;
-    aviso.nombreAvisos = document.querySelector("#nomAviso_" + id).value;
-    aviso.descripcionAvisos = document.querySelector("#desAviso_" + id).value;
-    aviso.precioAvisos = document.querySelector("#preAviso_" + id).value;
-
+    aviso.nombreAvisos = document.querySelector("#titulo").value;
+    aviso.descripcionAvisos = document.querySelector("#descripcion").value;
+    aviso.precioAvisos = document.querySelector("#precio").value;
     // formato del mensaje en JSON
     var avisoStringJSON = JSON.stringify(aviso);
+    
     xhr.send(avisoStringJSON);
+};
 
+// Creacion de un Metodo actualizar() en el Objeto PERSONA
+AVISO.actualizar = function(id){
+    // Instanciar el Objeto AJAX que existe en todos los Navegadores Web    
+    var xhr = new XMLHttpRequest();
+    // Metodo ACTUALIZAR, Accion PersonaServer
+    xhr.open("PUT","../AvisosControler");
+    // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.    
+    xhr.onreadystatechange = function(){
+        if( xhr.readyState === 4 && xhr.status === 200){
+            //alert(xhr.responseText);
+            AVISO.listarAvisos();            
+        }
+    };
+    // objeto para enviar los parametros del formulario
+    var aviso = {};
+    
+    aviso.idAvisos = id;    
+    aviso.nombreAvisos = document.querySelector("#nomAviso_"+id).value;
+    aviso.descripcionAvisos = document.querySelector("#desAviso_"+id).value;
+    aviso.precioAvisos = document.querySelector("#preAviso_"+id).value;
+    
+    // formato del mensaje en JSON
+    var avisoStringJSON = JSON.stringify(aviso);    
+    xhr.send(avisoStringJSON);
+    
 };
 
 // Creacion de un Metodo eliminar() en el Objeto PERSONA
@@ -104,12 +95,12 @@ AVISO.eliminar = function (id) {
     };
     // objeto para enviar los parametros del formulario
     var aviso = {};
-    aviso.idAvisos = id;
-    aviso.nombreAvisos = document.querySelector("#nomAviso_" + id).value;
-    aviso.descripcionAvisos = document.querySelector("#desAviso_" + id).value;
-    aviso.precioAvisos = document.querySelector("#preAviso_" + id).value;
+    aviso.idAvisos = id;    
+    aviso.nombreAvisos = document.querySelector("#nomAviso_"+id).value;
+    aviso.descripcionAvisos = document.querySelector("#desAviso_"+id).value;
+    aviso.precioAvisos = document.querySelector("#preAviso_"+id).value;
     // formato del mensaje en JSON
-    var avisoStringJSON = JSON.stringify(aviso);
+    var avisoStringJSON = JSON.stringify(aviso);    
     xhr.send(avisoStringJSON);
 };
 
@@ -121,8 +112,8 @@ MA.obtenerModelo = function () {
     xhr.open('GET', 'AvisosControler');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
-            MA.modeloAvisos = JSON.parse(xhr.responseText);
-        }
+            MA.modeloAvisos = JSON.parse(xhr.responseText);            
+        }        
         MA.obtenerPlantilla();
     };
     xhr.send(null);
