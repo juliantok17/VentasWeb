@@ -53,7 +53,7 @@ public class AvisosControler extends HttpServlet {
             Gson convertir = new Gson();
             String texto = request.getReader().readLine();
             AvisosVO avisoParametro = convertir.fromJson(texto, AvisosVO.class);
-            AvisosDAO.altaAviso(avisoParametro);
+            AvisosDAO.altaAviso(avisoParametro);            
             out.println(convertir.toJson("Aviso guardado correctamente"));
 
         } catch (ClassNotFoundException ex) {
@@ -79,7 +79,7 @@ public class AvisosControler extends HttpServlet {
             Gson convertir = new Gson();
             AvisosVO avisoParametro = convertir.fromJson(request.getReader(), AvisosVO.class);
             AvisosDAO.modificarAviso(avisoParametro);
-            out.println(convertir.toJson("OK"));
+            out.println(convertir.toJson("Aviso editado correctamente"));
             
         } catch (ClassNotFoundException ex) {
             out.println("" + ex.getMessage());

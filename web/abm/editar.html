@@ -1,0 +1,30 @@
+<article id="art1">
+    <form name="formulario" id="formulario" class="contact_form" action="#" method="post" onsubmit="return false;"><!--onsubmit="return false;"-->
+        <ul>
+
+            <li>
+                <label for="titulo">Título:</label>
+                <input class="text-input" type="text"  id="titulo" name="titulo" placeholder="Titulo del Aviso" required />
+            </li>
+            <li>
+                <label for="descripcion">Descripción:</label>
+                <textarea  id="descripcion" cols="40" rows="6" name="descripcion" required ></textarea>
+            </li>
+            <li>
+                <label for="precio">Precio:</label>
+                <input class="text-input" type="number"  id="precio" placeholder="111,11" name="precio" required />
+            </li>
+
+            <li>
+                <!--<button class="submit" id="botonenviar" onclick="AVISO.insertar();">Enviar</button>-->
+                <input type="submit" id="botonenviar" class="submit" onclick="AVISO.insertar();" value="Grabar" />
+            </li>
+        </ul>
+
+    </form>
+
+    <!--<div id="lista">
+    </div>-->
+
+    
+</article>
