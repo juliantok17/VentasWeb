@@ -26,10 +26,11 @@ public class AvisosControler extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        try {
+        try {            
             Gson gson = new Gson();
-            AvisosDAO allAvi = AvisosDAO.getInstance(); // Patron singleton
-            out.println(gson.toJson(allAvi.getAllAvisos()));
+            AvisosDAO respuesta = AvisosDAO.getInstance(); // Patron singleton                       
+            out.println(gson.toJson(respuesta.getAllAvisos()));               
+            
         } catch (ClassNotFoundException ex) {
             out.println("" + ex.getMessage());
         } catch (SQLException ex) {
@@ -37,6 +38,8 @@ public class AvisosControler extends HttpServlet {
         } catch (InstantiationException ex) {
             Logger.getLogger(AvisosControler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
+            Logger.getLogger(AvisosControler.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(AvisosControler.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             out.close();

@@ -4,9 +4,36 @@ AVISO = {};
 // Creacion de un Metodo consultar() en el Objeto Aviso
 
 AVISO.listarAvisos = function () {
-
+    
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'AvisosControler');
+    xhr.open('GET', '../AvisosControler');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+
+            AVISO.resModelo = JSON.parse(xhr.responseText);
+            var templateProductos = document.querySelector('#templateVistaProductos').innerHTML;
+
+            var listaAvisosJSON = {
+                "productos": AVISO.resModelo
+            };
+            var listaProd = Mustache.render(templateProductos, listaAvisosJSON);
+
+            var mostrar = document.querySelector('#lista');
+
+            mostrar.innerHTML = listaProd;
+        }
+
+    };    
+    xhr.send(null);
+};
+
+
+AVISO.buscarAvisos = function () {
+//    var elEvento = arguments[0] || window.event;
+//    var tecla = elEvento.keyCode;
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '../Editar');
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
 
@@ -24,7 +51,8 @@ AVISO.listarAvisos = function () {
         }
 
     };
-    xhr.send(null);
+    var texto = document.querySelector("#buscar").value;    
+    xhr.send(texto);
 };
 
 // Creacion de un Metodo insertar() en el Objeto PERSONA
@@ -38,7 +66,7 @@ AVISO.insertar = function () {
 
         var xhr = new XMLHttpRequest();
         // Metodo INSERTAR, Accion PersonaServer
-        xhr.open("POST", "AvisosControler", "true");
+        xhr.open("POST", "../AvisosControler", "true");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.
 
@@ -71,7 +99,7 @@ AVISO.actualizar = function (id) {
     // Instanciar el Objeto AJAX que existe en todos los Navegadores Web    
     var xhr = new XMLHttpRequest();
     // Metodo ACTUALIZAR, Accion PersonaServer
-    xhr.open("PUT", "AvisosControler");
+    xhr.open("PUT", "../AvisosControler");
     // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.    
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -102,7 +130,7 @@ AVISO.eliminar = function (id) {
     // Instanciar el Objeto AJAX que existe en todos los Navegadores Web
     var xhr = new XMLHttpRequest();
     // Metodo ELIMINAR, Accion PersonaServer
-    xhr.open("DELETE", "AvisosControler");
+    xhr.open("DELETE", "../AvisosControler");
     // Metodo Respuesta que se ejecuta en y muestra al finalizar el AJAX.
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
@@ -128,15 +156,18 @@ AVISO.eliminar = function (id) {
 var MA = {};
 
 MA.obtenerModelo = function () {
-
+     
+    //console.log(texto);
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'AvisosControler');
+    xhr.open('GET', 'AvisosControler');    
     xhr.onreadystatechange = function () {
+        
         if (xhr.readyState == 4 && xhr.status == 200) {
             MA.modeloAvisos = JSON.parse(xhr.responseText);
         }
         MA.obtenerPlantilla();
     };
+    
     xhr.send(null);
 };
 
@@ -163,4 +194,3 @@ MA.mostrarAvisos = function () {
     var todo = Mustache.render(MA.vistaAvisos, listaAvisosJSON);
     contenido.innerHTML = todo;
 };
-
